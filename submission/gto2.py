@@ -9,9 +9,9 @@ CARD_RANKS = {'2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, 'T
 CARD_SUITS = {'S': 0, 'C': 1, 'D': 2, 'H': 3}
 
 def setup_ai():
-    return JeremyGTObot2()
+    return gto2()
 
-class JeremyGTObot2(BasePokerPlayer):
+class gto2(BasePokerPlayer):
     def __init__(self):
         super().__init__()
         self.uuid = None

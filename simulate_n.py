@@ -3,7 +3,14 @@ import re
 from collections import defaultdict
 
 # Define your known player names
-PLAYERS = ["p1", "p2", "gtobot", "allin"]
+PLAYERS = [
+        #    "rand", 
+        #    "rand1", 
+        #    "rand2", 
+           "allin", 
+           "GPTBot", 
+           "gto3"
+           ]
 
 def extract_winner(output, player_names):
     for name in player_names:

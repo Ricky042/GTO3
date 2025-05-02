@@ -5,9 +5,9 @@ from pypokerengine.players import BasePokerPlayer
 # All cards follow this format: Suit + Rank : 4 of Hearts = 4H, 10 of Spades = ST [2,3,4,5,6,7,8,9,T,J,Q,K,A] [S,C,D,H]
 
 def setup_ai():
-    return JeremyGTObot()
+    return gto1()
 
-class JeremyGTObot(BasePokerPlayer):  # Do not forget to make parent class as "BasePokerPlayer"
+class gto1(BasePokerPlayer):  # Do not forget to make parent class as "BasePokerPlayer"
     def __init__(self):
         self.uuid = None
         self.hand_strength_preflop = {

@@ -5,9 +5,9 @@ from pypokerengine.players import BasePokerPlayer
 # All cards follow this format: Suit + Rank : 4 of Hearts = 4H, 10 of Spades = ST [2,3,4,5,6,7,8,9,T,J,Q,K,A] [S,C,D,H]
 
 def setup_ai():
-    return JeremyBotAllin()
+    return rand()
 
-class JeremyBotAllin(BasePokerPlayer):  # Do not forget to make parent class as "BasePokerPlayer"
+class rand(BasePokerPlayer):  # Do not forget to make parent class as "BasePokerPlayer"
 
     #  we define the logic to make an action through this method. (so this method would be the core of your AI)
     def declare_action(self, valid_actions, hole_card, round_state):
@@ -36,7 +36,7 @@ class JeremyBotAllin(BasePokerPlayer):  # Do not forget to make parent class as 
         # --------------------------------------------------------------------------------------------------------#
         
         # Sample code: feel free to rewrite
-        action = max_raise
+        action = random.choice(valid_actions)["action"]
         if action == "raise":
             action_info = valid_actions[2]
             amount = random.randint(action_info["amount"]["min"], action_info["amount"]["max"])
@@ -94,6 +94,3 @@ class JeremyBotAllin(BasePokerPlayer):  # Do not forget to make parent class as 
         action_info = valid_actions[2]
         amount = action_info['amount']['max']
         return action_info['action'], amount
-
-
-

@@ -94,6 +94,3 @@ class MyBot(BasePokerPlayer):  # Do not forget to make parent class as "BasePoke
         action_info = valid_actions[2]
         amount = action_info['amount']['max']
         return action_info['action'], amount
-
-
-
