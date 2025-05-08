@@ -4,7 +4,7 @@ python meta_simulate.py -n 5 -k 1000
 """
 import argparse
 from collections import defaultdict
-from simulate import simulate_games
+from scripts.simulate import simulate_games
 
 # ─── MAIN ──────────────────────────────────────────────────────────────────────
 def main():

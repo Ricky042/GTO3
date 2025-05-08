@@ -5,7 +5,6 @@ from submission.gto3 import gto3
 from submission.allin import allin
 from submission.GPTBot import GPTBot
 from submission.pokermon import pokermon
-from submission.teammasbot import TeamMasBot
 from submission.abc import abc
 
 BASE_CONFIG = [
