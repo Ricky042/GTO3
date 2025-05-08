@@ -6,6 +6,8 @@ This bot was inspired by Game Theory Optimal (GTO) play and it is designed to pl
 
 Designed for use with [PyPokerEngine](https://github.com/ishikota/PyPokerEngine).
 
+Check out our Devpost page here: https://devpost.com/software/penelopethepokerbot
+
 ## Strategy Overview
 
 - **Preflop Evaluation**: Considers hand strength (pairs, suited connectors, high cards).
