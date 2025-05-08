@@ -9,7 +9,8 @@ PLAYERS = [
         #    "rand2", 
            "allin", 
            "GPTBot", 
-           "gto3"
+           "gto3",
+           "gto4"
            ]
 
 def extract_winner(output, player_names):

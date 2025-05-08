@@ -7,14 +7,13 @@ from collections import defaultdict
 # ─── CONFIG ────────────────────────────────────────────────────────────────────
 N_SIMULATIONS = 100  # default number of games per batch
 PLAYERS = [
-           "rand", 
-           "rand1", 
-           "rand2", 
-           "allin", 
-           "GPTBot", 
-           "gto3"
-           ]
-
+    "gto3",
+    "pokermon",
+    "allin",
+    "abc",
+    "rand",
+    "GPTBot"
+]
 GAME_CMD = ["python", "run.py"]
 
 # ─── PARSING HELPERS ───────────────────────────────────────────────────────────
@@ -34,10 +33,11 @@ def parse_stack(line):
 
 # ─── SCORING HELPER ────────────────────────────────────────────────────────────
 def compute_final_score(scores):
-    sorted_scores = sorted(scores)
-    top2 = sorted_scores[-2:] if len(sorted_scores) >= 2 else sorted_scores[:]
-    non_zero = [s for s in sorted_scores if s > 0]
-    bottom_nz = min(non_zero) if non_zero else 0
+    sorted_scores = sorted(scores, reverse=True)
+    top2 = sorted_scores[:2]
+    remaining = sorted_scores[2:]
+    non_zero_remaining = [s for s in remaining if s > 0]
+    bottom_nz = min(non_zero_remaining) if non_zero_remaining else 0
     return sum(top2) + bottom_nz
 
 # ─── BATCH SIMULATION ──────────────────────────────────────────────────────────

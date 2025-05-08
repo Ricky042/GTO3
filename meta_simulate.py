@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""
+python meta_simulate.py -n 5 -k 1000
+"""
 import argparse
 from collections import defaultdict
 from simulate import simulate_games

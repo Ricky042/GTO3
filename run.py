@@ -2,20 +2,25 @@ from pypokerengine.api.game import setup_config, start_poker
 
 from submission.rand import rand
 from submission.mybot import MyBot
-from submission.gto1 import gto1
-from submission.gto2 import gto2
 from submission.gto3 import gto3
+from submission.evolvedallin import Evo
 from submission.allin import allin
-
 from submission.GPTBot import GPTBot
+from submission.pokermon import pokermon
+from submission.abc import abc
 
+PLAYER_LIST = [
+    ("gto3", gto3()),
+    ("pokermon", pokermon()),
+    ("allin", allin()),
+    ("abc", abc()),
+    ("rand", rand()),
+    ("GPTBot", GPTBot())
+]
+config = setup_config(max_round=50, initial_stack=100, small_blind_amount=5)
 
-config = setup_config(max_round=100, initial_stack=100, small_blind_amount=5)
-config.register_player(name="rand", algorithm=rand())
-config.register_player(name="rand1", algorithm=rand())
-config.register_player(name="rand2", algorithm=rand())
-config.register_player(name="allin", algorithm=allin())
-config.register_player(name="GPTBot", algorithm=GPTBot())
-config.register_player(name="gto3", algorithm=gto3())
+for player in PLAYER_LIST:
+    config.register_player(name=player[0], algorithm=player[1])
+
 
 game_result = start_poker(config, verbose=1)
