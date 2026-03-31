@@ -1,71 +1,72 @@
-# GTO3
+# 🃏 GTO3 — PokerHack 2025 Winner
 
-### Submission for PokerHack 2025 by HackMelbourne
+Hackathon-winning poker bot applying Game Theory Optimal (GTO) strategy via probability-based decision trees. Built for PokerHack 2025 hosted by HackMelbourne. Competed against bots from all participating teams and won.
 
-This bot was inspired by Game Theory Optimal (GTO) play and it is designed to play in careful consideration of pot size, hand strength and position.
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![Game Theory](https://img.shields.io/badge/Game%20Theory-Optimal-blueviolet?style=flat)
+![HackMelbourne](https://img.shields.io/badge/HackMelbourne-PokerHack%202025-gold?style=flat)
 
-Designed for use with [PyPokerEngine](https://github.com/ishikota/PyPokerEngine).
+> 🏆 **Winner — PokerHack 2025 (HackMelbourne)**
+> [Devpost submission](https://devpost.com/software/penelopethepokerbot)
 
-Check out our Devpost page here: https://devpost.com/software/penelopethepokerbot
+---
 
-## Strategy Overview
+## Strategy
 
-- **Preflop Evaluation**: Considers hand strength (pairs, suited connectors, high cards).
-- **Postflop Strategy**: Evaluates hand potential and board texture.
-- **Position Awareness**: Plays tighter in early position, looser in late position.
-- **Round-Based Aggression**: Becomes more aggressive as rounds progress.
-- **Probabilistic Bluffing**: Occasionally bluffs to stay unpredictable.
-- **Pot Odds & Stack Size**: Adjusts behavior based on pot odds and current stack.
+The bot implements a layered decision framework combining hand strength evaluation, pot odds calculation, positional awareness, and controlled probabilistic bluffing:
 
-## Playing the poker games
-Before you can run the code, run
+- **Preflop** — evaluates hand strength (pairs, suited connectors, high-card equity) and adjusts opening range by position
+- **Postflop** — reads board texture and hand potential (made hands vs draws) to determine bet sizing
+- **Position awareness** — plays tighter from early position, exploits late-position advantage
+- **Pot odds** — folds draws where EV is negative, calls and raises where pot odds justify it
+- **Aggression scaling** — increases aggression as the round progresses to pressure passive opponents
+- **Probabilistic bluffing** — tuned bluff frequency to remain unexploitable without being too passive
+
+---
+
+## Why it won
+
+Most bots in the competition played reactive strategies — call or fold based on hand strength alone. GTO3 won by combining **position awareness** with **pot odds calculation**, two factors most competitors ignored. The probabilistic bluffing layer made it impossible for opponent bots to build a static counter-strategy.
+
+---
+
+## Running the bot
+
+### Install
+
 ```bash
 pip install -r requirements.txt
 ```
 
-### Testing 
-To see how your bot plays against other bots:
-- Register your bot in poker_conf.yaml:
+### Configure opponents in `poker_conf.yaml`
+
 ```yaml
 ai_players:
-  - name: Fish1
+  - name: Opponent1
     path: sample_player/fish_player_setup.py
-  - name: Fish2
-    path: sample_player/fish_player_setup.py
-  - name: Fish3
+  - name: Opponent2
     path: sample_player/random_player_setup.py
-  - name: Team-Bots
+  - name: GTO3
     path: submission/Team-Bots.py
-ante: 0
-blind_structure: null
 initial_stack: 100
 max_round: 10
 small_blind: 10
 ```
-In this code block, your bot is the fourth player
-The other players codes are in the sample_player folder (you do not need to work in this folder)
-You can also play around with different ante's, initial stacks, max number of rounds and the small blind
 
-Then, start the server
+### Start the server
 
-If running locally on your computer, run
 ```bash
 python -m pypokergui serve ./poker_conf.yaml --port 8000 --speed moderate
 ```
-You can also use "slow" or "fast"
-- Their game event speeds are defined in pypokergui/message_manager/py from line 279 onwards
 
-A new browser tab should open
-Then you can click on Start Poker to start the simulation
-Alternatively, you can also register yourself as a player to play against the AI players
+Open the browser tab → click **Start Poker** → watch it play.
 
-If a port error shows up, such as "OSError: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted"
-- Rerun the bash command but with a different port (such as 8001)
+> If you get a port error, change `--port 8000` to `--port 8001`
 
-To close the server, go to the terminal and input Ctrl+C
+---
 
-Additional resources:
+## Built with
 
-PyPokerEngine resources : https://ishikota.github.io/PyPokerEngine/
-How to play poker : https://www.youtube.com/watch?v=CpSewSHZhmo
-Notion on Poker : https://www.notion.so/How-to-play-poker-An-extensive-guide-for-beginners-1e63f0dcdde3803996e5d2e85a437303?pvs=4
+- [PyPokerEngine](https://github.com/ishikota/PyPokerEngine) — game engine and simulation framework
+- Python probability utilities — hand equity calculation
+- Custom decision tree — position + pot odds + bluff frequency logic
